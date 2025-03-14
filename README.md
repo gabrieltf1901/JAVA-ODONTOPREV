@@ -1,5 +1,7 @@
 # Challenge Odontoprev
 
+## LINK VÍDEO DE APRESENTAÇÃO ---> https://youtu.be/oJyi9yUKL64
+
 ## Objetivo
 O projeto Challenge **Odontoprev** tem como objetivo a redução de sinistros por meio de análise preditiva de atendimentos odontológicos. A aplicação web permite o gerenciamento de dados (Pacientes, Consultas, Faturamento, Procedimentos e Profissionais) utilizando o padrão MVC, facilitando a manutenção e a evolução do sistema.
 
