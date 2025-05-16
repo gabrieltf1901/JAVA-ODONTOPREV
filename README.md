@@ -6,7 +6,7 @@
 
 O **Odontoprev** é um sistema de gerenciamento para clínica odontológica, desenvolvido em Java com Spring Boot, Thymeleaf e Oracle Database. O objetivo principal é controlar usuários, autenticação, cadastros de pacientes, agendamentos e histórico de tratamentos.
 
-## IMPORTANTE ---> Descomentar a API Key no application.properties
+#### IMPORTANTE ---> Descomentar a API Key no application.properties
 
 ## Tecnologias Utilizadas
 
