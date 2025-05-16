@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <sec:csrfMetaTags/>
+    <title th:text="${usuario.id} == null
+               ? 'Cadastro de Usuário – Odontoprev'
+               : 'Editar Usuário – Odontoprev'">
+        Cadastro de Usuário – Odontoprev
+    </title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}" />
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">Odontoprev</a>
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link"
+                   th:href="${usuario.id} == null
+                             ? @{/login}
+                             : @{/usuarios}">
+                    <span th:text="${usuario.id} == null
+                                   ? 'Voltar ao Login'
+                                   : 'Voltar à Listagem'">
+                        Voltar
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title mb-4"
+                        th:text="${usuario.id} == null
+                                 ? 'Cadastro de Usuário'
+                                 : 'Editar Usuário'">
+                        Cadastro de Usuário
+                    </h5>
+
+                    <form th:action="${usuario.id} == null
+                                      ? @{/usuarios}
+                                      : @{/usuarios/{id}(id=${usuario.id})}"
+                          th:object="${usuario}"
+                          method="post"
+                          sec:csrf="true">
+
+                        <input type="hidden"
+                               th:if="${usuario.id} != null"
+                               th:field="*{id}" />
+
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome Completo</label>
+                            <input type="text"
+                                   id="nome"
+                                   th:field="*{nome}"
+                                   class="form-control"
+                                   placeholder="Seu nome completo"
+                                   required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="email"
+                                   id="email"
+                                   th:field="*{email}"
+                                   class="form-control"
+                                   placeholder="seu@exemplo.com"
+                                   required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="senha" class="form-label">Senha</label>
+                            <input type="password"
+                                   id="senha"
+                                   th:field="*{senha}"
+                                   class="form-control"
+                                   placeholder="••••••••"
+                                   required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="confirmarSenha" class="form-label">Confirmar Senha</label>
+                            <input type="password"
+                                   id="confirmarSenha"
+                                   th:field="*{confirmarSenha}"
+                                   class="form-control"
+                                   placeholder="••••••••"
+                                   required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="telefone" class="form-label">Telefone</label>
+                            <input type="tel"
+                                   id="telefone"
+                                   th:field="*{telefone}"
+                                   class="form-control"
+                                   placeholder="(XX) XXXXX-XXXX" />
+                        </div>
+
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary"
+                                    th:text="${usuario.id} == null
+                                             ? 'Registrar'
+                                             : 'Salvar Alterações'">
+                                Registrar
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

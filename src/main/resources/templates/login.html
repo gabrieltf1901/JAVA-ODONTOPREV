@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login – Odontoprev</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}" />
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+        }
+        .card {
+            background-color: #1e1e1e;
+            border: none;
+        }
+        .btn-primary {
+            background-color: #0062cc;
+            border-color: #0062cc;
+        }
+    </style>
+</head>
+<body>
+<div class="container d-flex vh-100">
+    <div class="row justify-content-center align-self-center w-100">
+        <div class="col-12 col-md-4">
+            <div th:if="${param.error}" class="alert alert-danger text-center">
+                Usuário ou senha inválidos.
+            </div>
+            <div th:if="${param.logout}" class="alert alert-success text-center">
+                Você saiu com sucesso.
+            </div>
+
+            <div class="card p-4 shadow">
+                <h3 class="card-title text-center mb-4">Odontoprev</h3>
+                <form th:action="@{/login}" method="post">
+                    <input type="hidden"
+                           th:name="${_csrf.parameterName}"
+                           th:value="${_csrf.token}" />
+
+                    <div class="mb-3">
+                        <label for="username" class="form-label">E-mail</label>
+                        <input type="email"
+                               id="username"
+                               name="username"
+                               class="form-control"
+                               placeholder="seu@exemplo.com"
+                               required />
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="password" class="form-label">Senha</label>
+                        <input type="password"
+                               id="password"
+                               name="password"
+                               class="form-control"
+                               placeholder="••••••••"
+                               required />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                </form>
+
+                <div class="text-center mt-3">
+                    <a th:href="@{/usuarios/novo}" class="link-light">Criar nova conta</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

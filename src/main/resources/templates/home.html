@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="${#locale}">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title th:text="#{home.title}">Home – Odontoprev</title>
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}"/>
+  <style>
+    body {
+      background-color: #ffffff;
+    }
+    .navbar-custom {
+      background-color: #0d6efd;
+    }
+    .navbar-custom .nav-link,
+    .navbar-custom .navbar-brand {
+      color: #ffffff;
+    }
+    .navbar-custom .nav-link:hover {
+      color: #e2e6ea;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+  <div class="container">
+    <a class="navbar-brand"
+       th:href="@{/home(lang=${#locale})}"
+       th:text="#{app.name}">Odontoprev</a>
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="#{navbar.toggle}">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+
+        <li class="nav-item">
+          <a class="nav-link"
+             th:href="@{/home(lang='pt')}"
+             th:text="#{lang.pt}">PT</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+             th:href="@{/home(lang='en')}"
+             th:text="#{lang.en}">EN</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"
+             th:href="@{/consultas/list(lang=${#locale})}"
+             th:text="#{home.consultations.list}">Lista de Consultas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+             th:href="@{/consultas/nova(lang=${#locale})}"
+             th:text="#{home.consultations.new}">Nova Consulta</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+             th:href="@{/profissionais/list(lang=${#locale})}"
+             th:text="#{home.professionals.list}">Profissionais</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="container" style="padding-top: 100px;">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10">
+
+      <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+          <h1 class="card-title text-center text-primary mb-3"
+              th:text="#{home.welcome}">Bem-vindo à Odontoprev</h1>
+          <p class="card-text"
+             th:text="#{home.description}">
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-12 col-sm-6">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title" th:text="#{home.schedule.title}">Agendar Consulta</h5>
+              <p class="card-text" th:text="#{home.schedule.text}">
+              </p>
+              <a th:href="@{/consultas/form(lang=${#locale})}"
+                 class="btn btn-primary"
+                 th:text="#{home.schedule.button}">Agendar</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title" th:text="#{home.professionals.title}">Ver Profissionais</h5>
+              <p class="card-text" th:text="#{home.professionals.text}">
+              </p>
+              <a th:href="@{/profissionais/list(lang=${#locale})}"
+                 class="btn btn-primary"
+                 th:text="#{home.professionals.button}">Ver Profissionais</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

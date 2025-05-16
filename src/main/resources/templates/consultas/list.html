@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Listagem de Consultas – Odontoprev</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}" />
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/home}">Odontoprev</a>
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" th:href="@{/consultas/list}">Lista de Consultas</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/consultas/nova}">Nova Consulta</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/profissionais/list}">Profissionais</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3>Consultas Agendadas</h3>
+        <a class="btn btn-primary" th:href="@{/consultas/nova}">Agendar Nova</a>
+    </div>
+
+    <table class="table table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>Usuário</th>
+            <th>Profissional</th>
+            <th>Data e Hora</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="c : ${consultas}">
+            <td th:text="${c.usuarioNome}">Usuário</td>
+            <td th:text="${c.profissionalNome}">Profissional</td>
+            <td th:text="${#temporals.format(c.dataHora,'dd/MM/yyyy HH:mm')}">dd/MM/yyyy HH:mm</td>
+            <td>
+                <a th:href="@{/consultas/{id}/editar(id=${c.id})}"
+                   class="btn btn-sm btn-warning">Editar</a>
+                <a th:href="@{/consultas/{id}/cancelar(id=${c.id})}"
+                   class="btn btn-sm btn-secondary">Cancelar</a>
+                <a th:href="@{/consultas/{id}/excluir(id=${c.id})}"
+                   class="btn btn-sm btn-danger"
+                   onclick="return confirm('Confirma exclusão?')">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
